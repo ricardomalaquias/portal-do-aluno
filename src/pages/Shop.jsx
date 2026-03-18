@@ -9,7 +9,7 @@ export default function Shop() {
       description: 'Aprenda os rudimentos, grooves e técnicas essenciais para elevar seu nível na bateria.',
       link: 'https://hotmart.com/pt-br/marketplace/produtos/hagsxd-dominando-os-fundamentos-da-bateria-w3wcc/J102674511C',
       buttonText: 'Acessar Curso',
-      bgColor: 'bg-gradient-to-r from-orange-500 to-red-500',
+      bgColor: 'border-l-orange-500',
       active: true,
     },
     {
@@ -19,7 +19,7 @@ export default function Shop() {
       description: 'A melhor borracha do mercado para você treinar seus rudimentos em qualquer lugar.',
       link: 'https://padgorilla.com.br/',
       buttonText: 'Garantir o meu',
-      bgColor: 'bg-gradient-to-r from-zinc-800 to-black',
+      bgColor: 'border-l-zinc-300',
       active: true,
     },
     {
@@ -29,7 +29,7 @@ export default function Shop() {
       description: 'Um café de torra média-escura com a energia necessária para aguentar o bumbo duplo.',
       link: 'https://bixo.cafe/produtos/blast-beat-ric-malaquias-bixo-cafe/',
       buttonText: 'Comprar Café',
-      bgColor: 'bg-gradient-to-r from-amber-700 to-yellow-900',
+      bgColor: 'border-l-amber-700',
       active: true,
     },
     {
@@ -39,58 +39,59 @@ export default function Shop() {
       description: 'Os melhores pratos B20 do Brasil. A vitrine está sendo atualizada com a nova coleção.',
       link: '#',
       buttonText: 'Em Manutenção',
-      bgColor: 'bg-gradient-to-r from-gray-400 to-gray-500',
+      bgColor: 'border-l-neutral-600',
       active: false,
     }
   ];
 
   return (
-    <div className="space-y-4">
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-          <ShoppingCart size={24} className="text-indigo-600" />
-          Shop & Parceiros
-        </h1>
-        <p className="text-sm text-gray-500">Equipamentos, cursos e descontos exclusivos.</p>
+    <div className="space-y-6 md:space-y-8">
+      <header className="flex items-center justify-between pb-4 border-b border-neutral-800">
+        <div>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-neutral-50 tracking-tighter flex items-center gap-3">
+            <ShoppingCart size={32} className="text-accent-600" />
+            Shop & Parceiros
+          </h1>
+          <p className="text-sm text-neutral-400 mt-1">Equipamentos, cursos e descontos exclusivos para alunos.</p>
+        </div>
       </header>
 
-      <div className="space-y-4">
+      {/* Grid Responsivo para a Vitrine */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {partners.map((item) => (
           <div 
             key={item.id} 
-            className={`${item.bgColor} rounded-2xl p-5 text-white shadow-md relative overflow-hidden`}
+            className={`bg-neutral-900 rounded-3xl p-6 text-neutral-100 shadow-xl border border-neutral-800 border-l-4 ${item.bgColor} flex flex-col justify-between transition-all hover:border-neutral-700 hover:-translate-y-1`}
           >
-            <div className="absolute -right-10 -top-10 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl"></div>
-
-            <div className="relative z-10">
-              <span className="text-[10px] uppercase tracking-wider font-bold opacity-80 mb-1 block">
+            <div>
+              <span className="text-[10px] uppercase tracking-widest font-bold text-accent-600 mb-1 block">
                 {item.subtitle}
               </span>
-              <h2 className="text-xl font-bold mb-2 leading-tight">{item.title}</h2>
-              <p className="text-sm opacity-90 mb-4 line-clamp-2">
+              <h2 className="text-xl font-bold mb-2 leading-tight text-neutral-50">{item.title}</h2>
+              <p className="text-sm text-neutral-400 mb-6 leading-relaxed">
                 {item.description}
               </p>
-
-              {item.active ? (
-                <a 
-                  href={item.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-gray-900 px-4 py-2 rounded-xl text-sm font-bold shadow-sm hover:bg-gray-100 transition-colors active:scale-95"
-                >
-                  {item.buttonText}
-                  <ExternalLink size={16} />
-                </a>
-              ) : (
-                <button 
-                  disabled
-                  className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-xl text-sm font-bold cursor-not-allowed border border-white/30"
-                >
-                  <Wrench size={16} />
-                  {item.buttonText}
-                </button>
-              )}
             </div>
+
+            {item.active ? (
+              <a 
+                href={item.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-neutral-50 text-neutral-950 px-4 py-3 rounded-xl text-sm font-bold shadow-sm hover:bg-neutral-200 transition-colors active:scale-95"
+              >
+                {item.buttonText}
+                <ExternalLink size={16} />
+              </a>
+            ) : (
+              <button 
+                disabled
+                className="w-full flex items-center justify-center gap-2 bg-neutral-800 text-neutral-500 px-4 py-3 rounded-xl text-sm font-bold cursor-not-allowed border border-neutral-700"
+              >
+                <Wrench size={16} />
+                {item.buttonText}
+              </button>
+            )}
           </div>
         ))}
       </div>
