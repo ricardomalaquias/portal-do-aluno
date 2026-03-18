@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../services/supabaseClient';
-import { UserEdit, Save, BookOpenText, CalendarCheck, Info } from 'lucide-react';
+import { Edit, Save, BookOpenText, CalendarCheck, Info } from 'lucide-react';
 
 export default function Dashboard() {
   const { profile } = useAuth();
@@ -86,7 +86,7 @@ export default function Dashboard() {
                 onClick={() => isEditing ? handleSaveProfile() : setIsEditing(true)}
                 className="flex items-center gap-2 text-sm font-semibold text-accent-600 bg-accent-600/10 px-4 py-2 rounded-lg hover:bg-accent-600/20 transition-colors"
               >
-                {isEditing ? <Save size={16} /> : <UserEdit size={16} />}
+                {isEditing ? <Save size={16} /> : <Edit size={16} />}
                 {isEditing ? 'Salvar' : 'Editar'}
               </button>
             </div>
